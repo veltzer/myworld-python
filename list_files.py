@@ -34,12 +34,12 @@ def main():
     page_token=None
     while True:
         response = service.files().list(
-                pageSize=500,
+                pageSize=1000,
                 fields="nextPageToken, files(id, name)",
                 pageToken=page_token,
         ).execute()
         for item in response.get('files', []):
-            print('{0} ({1})'.format(item['name'], item['id']))
+            print('name:{0}, id:{1}'.format(item['name'], item['id']))
         page_token=response.get('nextPageToken', None)
         if page_token is None:
             break
