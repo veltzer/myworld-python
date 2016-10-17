@@ -11,6 +11,7 @@ import oauth2client.file # for Storage
 # If modifying these scopes, delete your previously saved credentials
 # at ~/.credentials/drive-python-quickstart.json
 SCOPES = 'https://www.googleapis.com/auth/drive.metadata.readonly'
+SCOPES = 'https://www.googleapis.com/auth/drive'
 
 CLIENT_SECRET_FILE = os.path.expanduser('~/.myworld/client_id.json')
 APPLICATION_NAME = 'myworld'
@@ -30,12 +31,18 @@ def main():
     http = credentials.authorize(httplib2.Http())
     service = apiclient.discovery.build('drive', 'v3', http=http)
 
-    results = service.files().list(pageSize=10,fields="nextPageToken, files(id, name)").execute()
-    items = results.get('files', [])
-    while items:
-        print('Files:')
-        for item in items:
+    page_token=None
+    while True:
+        response = service.files().list(
+                pageSize=500,
+                fields="nextPageToken, files(id, name)",
+                pageToken=page_token,
+        ).execute()
+        for item in response.get('files', []):
             print('{0} ({1})'.format(item['name'], item['id']))
+        page_token=response.get('nextPageToken', None)
+        if page_token is None:
+            break
 
 if __name__ == '__main__':
     main()
