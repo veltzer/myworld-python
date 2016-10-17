@@ -1,0 +1,5 @@
+- bash script which sets up so I could work with the files
+directly from the repo
+- package as python module
+- upload to pypy.
+- install locally.
