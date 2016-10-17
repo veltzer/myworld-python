@@ -15,7 +15,6 @@ SCOPES = 'https://www.googleapis.com/auth/drive.metadata.readonly'
 CLIENT_SECRET_FILE = os.path.expanduser('~/.myworld/client_id.json')
 APPLICATION_NAME = 'myworld'
 
-
 def create_new_creds(flags):
     flow = oauth2client.client.flow_from_clientsecrets(CLIENT_SECRET_FILE, SCOPES)
     flow.user_agent = APPLICATION_NAME
