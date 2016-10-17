@@ -1,0 +1,2 @@
+python api for google drive:
+	https://developers.google.com/drive/v3/web/quickstart/python
