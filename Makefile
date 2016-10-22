@@ -1,3 +1,1 @@
-.PHONY: all
-all:
-	@true
+/usr/share/templar/make/Makefile
