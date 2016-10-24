@@ -3,7 +3,7 @@ dependencies for this project
 '''
 
 def populate(d):
-    d.requirements=[
+    d.requirements3=[
         'google-api-python-client',
         'click',
     ]
