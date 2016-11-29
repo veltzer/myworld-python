@@ -47,5 +47,5 @@ debug_me:
 
 $(TOOLS_STAMP): templardefs/deps.py $(ALL_DEP)
 	$(info doing [$@])
-	$(Q)templar_cmd install_deps
+	$(Q)templar install_deps
 	$(Q)make_helper touch-mkdir $@
