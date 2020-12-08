@@ -48,4 +48,4 @@ debug_me:
 $(TOOLS_STAMP): templardefs/deps.py $(ALL_DEP)
 	$(info doing [$@])
 	$(Q)templar install_deps
-	$(Q)make_helper touch-mkdir $@
+	$(Q)pymakehelper touch_mkdir $@
