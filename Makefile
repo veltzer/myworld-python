@@ -1,4 +1,3 @@
-include /usr/share/templar/make/Makefile
 ##########
 # params #
 ##########
@@ -45,7 +44,6 @@ all: $(ALL) $(ALL_DEP)
 debug_me:
 	$(info ALL is $(ALL))
 
-$(TOOLS_STAMP): templardefs/deps.py $(ALL_DEP)
+$(TOOLS_STAMP): config/deps.py $(ALL_DEP)
 	$(info doing [$@])
-	$(Q)templar install_deps
 	$(Q)pymakehelper touch_mkdir $@
