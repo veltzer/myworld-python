@@ -5,15 +5,15 @@
 DO_MKDBG?=0
 # do doots?
 DO_TOOLS:=1
-# should we depend on the date of the makefile itself ?
-DO_MAKEDEPS:=1
+# do you want dependency on the Makefile itself ?
+DO_ALLDEP:=1
+
 
 ########
 # code #
 ########
 ALL:=
 OUT:=out
-ALL_DEP:=Makefile
 TOOLS_STAMP:=$(OUT)/tools.stamp
 
 ifeq ($(DO_MKDBG),1)
@@ -28,22 +28,22 @@ ifeq ($(DO_TOOLS),1)
 ALL+=$(TOOLS_STAMP)
 endif # DO_TOOLS
 
-ALL_DEP:=
-ifeq ($(DO_MAKEDEPS),1)
-ALL_DEP:=$(ALL_DEP) Makefile
-endif # DO_MAKEDEPS
+# dependency on the makefile itself
+ifeq ($(DO_ALLDEP),1)
+.EXTRA_PREREQS+=$(foreach mk, ${MAKEFILE_LIST},$(abspath ${mk}))
+endif
 
 #########
 # rules #
 #########
 # do not add a body for this rule
 .PHONY: all
-all: $(ALL) $(ALL_DEP)
+all: $(ALL)
 
 .PHONY: debug_me
 debug_me:
 	$(info ALL is $(ALL))
 
-$(TOOLS_STAMP): config/deps.py $(ALL_DEP)
+$(TOOLS_STAMP): config/deps.py
 	$(info doing [$@])
 	$(Q)pymakehelper touch_mkdir $@
