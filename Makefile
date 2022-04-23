@@ -41,8 +41,8 @@ endif
 all: $(ALL)
 	@true
 
-.PHONY: debug_me
-debug_me:
+.PHONY: debug
+debug:
 	$(info ALL is $(ALL))
 
 $(TOOLS_STAMP): config/deps.py
