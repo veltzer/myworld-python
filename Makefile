@@ -39,6 +39,7 @@ endif
 # do not add a body for this rule
 .PHONY: all
 all: $(ALL)
+	@true
 
 .PHONY: debug_me
 debug_me:
