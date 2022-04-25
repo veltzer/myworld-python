@@ -42,7 +42,7 @@ all: $(ALL)
 .PHONY: debug
 debug:
 	$(info ALL is $(ALL))
-$(TOOLS): config/deps.py
+$(TOOLS): packages.txt config/deps.py
 	$(info doing [$@])
 	$(Q)pymakehelper touch_mkdir $@
 .PHONY: clean_hard
