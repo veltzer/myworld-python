@@ -3,8 +3,6 @@
 ##########
 # debug the makefile?
 DO_MKDBG?=0
-# do toots?
-DO_TOOLS:=1
 # do you want dependency on the Makefile itself ?
 DO_ALLDEP:=1
 
@@ -13,7 +11,6 @@ DO_ALLDEP:=1
 ########
 ALL:=
 OUT:=out
-TOOLS:=$(OUT)/tools.stamp
 
 ifeq ($(DO_MKDBG),1)
 Q=
@@ -22,10 +19,6 @@ else # DO_MKDBG
 Q=@
 #.SILENT:
 endif # DO_MKDBG
-
-ifeq ($(DO_TOOLS),1)
-ALL+=$(TOOLS)
-endif # DO_TOOLS
 
 # dependency on the makefile itself
 ifeq ($(DO_ALLDEP),1)
@@ -39,15 +32,15 @@ endif # DO_ALLDEP
 .PHONY: all
 all: $(ALL)
 	@true
+
 .PHONY: debug
 debug:
 	$(info ALL is $(ALL))
-$(TOOLS): packages.txt config/deps.py
-	$(info doing [$@])
-	$(Q)pymakehelper touch_mkdir $@
+
 .PHONY: clean_hard
 clean_hard:
-	@git clean -qffxd
+	$(Q)git clean -qffxd
+
 .PHONY: clean
 clean:
-	@rm $(TOOLS)
+	$(Q)rm $(ALL)
