@@ -2,7 +2,7 @@ import config.project
 
 package_name = config.project.project_name
 
-run_requires = [
+install_requires = [
     "google-api-python-client",
     "click",
 ]
