@@ -1,6 +1,6 @@
-##########
-# params #
-##########
+##############
+# parameters #
+##############
 # debug the makefile?
 DO_MKDBG?=0
 # do you want dependency on the Makefile itself ?
