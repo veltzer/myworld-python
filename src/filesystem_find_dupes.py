@@ -32,9 +32,9 @@ def main():
                     exist_hash[h]=fullname
 
     for k,v in hashmap.items():
-        print('hash: {0}'.format(k))
+        print(f'hash: {k}')
         for i,f in enumerate(v):
-            print('{0}) keep {1}'.format(i,f))
+            print(f'{i}) keep {f}')
         print('s) skip')
         print('q) quit')
         inp=input('choice> ')

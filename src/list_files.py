@@ -19,7 +19,7 @@ APPLICATION_NAME = 'myworld'
 def load_credentials():
     credential_path=os.path.expanduser('~/.credentials/myworld.json')
     if not os.path.isfile(credential_path):
-        print('credential file [{0}] is missing'.format(credential_path), file=sys.stderr)
+        print(f'credential file [{credential_path}] is missing', file=sys.stderr)
         print('create it with setup_credentials.py', file=sys.stderr)
         sys.exit(1)
     return oauth2client.file.Storage(credential_path).get()
@@ -39,7 +39,7 @@ def main():
                 pageToken=page_token,
         ).execute()
         for item in response.get('files', []):
-            print('name:{0}, id:{1}'.format(item['name'], item['id']))
+            print('name:{}, id:{}'.format(item['name'], item['id']))
         page_token=response.get('nextPageToken', None)
         if page_token is None:
             break

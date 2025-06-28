@@ -37,7 +37,7 @@ def setup_credentials(flags):
             create_new_creds(flags)
             print('Storing credentials to ' + credential_path)
         else:
-            print('you already have valid credentials in [{0}]...'.format(credential_path), file=sys.stderr)
+            print(f'you already have valid credentials in [{credential_path}]...', file=sys.stderr)
             print('refusing to overwrite the credentials', file=sys.stderr)
             print('remove them if you want to recreate them...', file=sys.stderr)
             sys.exit(1)
