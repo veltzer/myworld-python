@@ -1,5 +1,10 @@
 # THIS IS AN AUTO-GENERATED FILE. DO NOT EDIT!
 click
 google-api-python-client
+mypy
+pycmdtools
 pydmt
+pylint
 pymakehelper
+pytest
+ruff
