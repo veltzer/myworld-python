@@ -2,6 +2,7 @@
 click
 google-api-python-client
 mypy
+pyclassifiers
 pycmdtools
 pydmt
 pylint
