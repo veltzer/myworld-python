@@ -43,7 +43,7 @@ protobuf==6.31.1
 pyasn1==0.6.1
 pyasn1_modules==0.4.2
 pycmdtools==0.0.85
-pydmt==0.3.24
+pydmt==0.3.26
 pyfakeuse==0.0.9
 Pygments==2.19.2
 pylint==3.3.7
