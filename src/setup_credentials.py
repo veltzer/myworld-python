@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 
+""" Create and store Google Drive oauth credentials. """
+
 import os.path # for expanduser, join, isfile
 import os # for mkdir
 import argparse # for ArgumentParser
@@ -15,10 +17,11 @@ SCOPES = 'https://www.googleapis.com/auth/drive.metadata.readonly'
 CLIENT_SECRET_FILE = os.path.expanduser('~/.myworld/client_id.json')
 APPLICATION_NAME = 'myworld'
 
-def create_new_creds(flags):
+def create_new_creds(flags, store):
+    """ Run the oauth flow and persist the result into store. """
     flow = oauth2client.client.flow_from_clientsecrets(CLIENT_SECRET_FILE, SCOPES)
     flow.user_agent = APPLICATION_NAME
-    credentials = oauth2client.tools.run_flow(flow, store, flags)
+    oauth2client.tools.run_flow(flow, store, flags)
 
 def setup_credentials(flags):
     """Gets valid user credentials from storage.
@@ -34,7 +37,7 @@ def setup_credentials(flags):
         store = oauth2client.file.Storage(credential_path)
         credentials = store.get()
         if not credentials or credentials.invalid:
-            create_new_creds(flags)
+            create_new_creds(flags, store)
             print('Storing credentials to ' + credential_path)
         else:
             print(f'you already have valid credentials in [{credential_path}]...', file=sys.stderr)
@@ -45,11 +48,12 @@ def setup_credentials(flags):
         credential_dir = os.path.expanduser('~/.credentials')
         if not os.path.exists(credential_dir):
             os.mkdir(credential_dir)
-        create_new_creds(flags)
+        create_new_creds(flags, oauth2client.file.Storage(credential_path))
         print('Storing credentials to ' + credential_path)
 
 
 def main():
+    """ main entry point """
     flags = argparse.ArgumentParser(parents=[oauth2client.tools.argparser]).parse_args()
     setup_credentials(flags)
 

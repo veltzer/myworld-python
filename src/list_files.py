@@ -1,10 +1,13 @@
 #!/usr/bin/python3
 
-import httplib2 # for Http
+""" List files in Google Drive using stored credentials. """
+
 import os.path # for expanduser
 import argparse # for ArgumentParser
 import sys # for stderr
-import apiclient.discovery # for build
+
+import httplib2 # for Http
+import googleapiclient.discovery # for build
 import oauth2client.tools # for argparser
 import oauth2client.file # for Storage
 
@@ -17,6 +20,7 @@ CLIENT_SECRET_FILE = os.path.expanduser('~/.myworld/client_id.json')
 APPLICATION_NAME = 'myworld'
 
 def load_credentials():
+    """ Load stored oauth credentials or exit with instructions. """
     credential_path=os.path.expanduser('~/.credentials/myworld.json')
     if not os.path.isfile(credential_path):
         print(f'credential file [{credential_path}] is missing', file=sys.stderr)
@@ -25,11 +29,12 @@ def load_credentials():
     return oauth2client.file.Storage(credential_path).get()
 
 def main():
-    flags = argparse.ArgumentParser(parents=[oauth2client.tools.argparser]).parse_args()
+    """ main entry point """
+    argparse.ArgumentParser(parents=[oauth2client.tools.argparser]).parse_args()
 
     credentials = load_credentials()
     http = credentials.authorize(httplib2.Http())
-    service = apiclient.discovery.build('drive', 'v3', http=http)
+    service = googleapiclient.discovery.build('drive', 'v3', http=http)
 
     page_token=None
     while True:
@@ -39,7 +44,7 @@ def main():
                 pageToken=page_token,
         ).execute()
         for item in response.get('files', []):
-            print('name:{}, id:{}'.format(item['name'], item['id']))
+            print(f"name:{item['name']}, id:{item['id']}")
         page_token=response.get('nextPageToken', None)
         if page_token is None:
             break
