@@ -2,13 +2,14 @@
 
 """ Create and store Google Drive oauth credentials. """
 
-import os.path # for expanduser, join, isfile
-import os # for mkdir
-import argparse # for ArgumentParser
-import sys # for stderr, exit
-import oauth2client.file # for Storage
-import oauth2client.tools # for run_flow, argparser
-import oauth2client.client # for flow_from_clientsecrets
+import argparse  # for ArgumentParser
+import os  # for mkdir
+import os.path  # for expanduser, join, isfile
+import sys  # for stderr, exit
+
+import oauth2client.client  # for flow_from_clientsecrets
+import oauth2client.file  # for Storage
+import oauth2client.tools  # for run_flow, argparser
 
 # If modifying these scopes, delete your previously saved credentials
 # at ~/.credentials/drive-python-quickstart.json

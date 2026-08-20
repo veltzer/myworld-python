@@ -2,14 +2,14 @@
 
 """ List files in Google Drive using stored credentials. """
 
-import os.path # for expanduser
-import argparse # for ArgumentParser
-import sys # for stderr
+import argparse  # for ArgumentParser
+import os.path  # for expanduser
+import sys  # for stderr
 
-import httplib2 # for Http
-import googleapiclient.discovery # for build
-import oauth2client.tools # for argparser
-import oauth2client.file # for Storage
+import googleapiclient.discovery  # for build
+import httplib2  # for Http
+import oauth2client.file  # for Storage
+import oauth2client.tools  # for argparser
 
 # If modifying these scopes, delete your previously saved credentials
 # at ~/.credentials/drive-python-quickstart.json

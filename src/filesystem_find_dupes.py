@@ -2,11 +2,11 @@
 
 """ Find duplicate files by md5 and interactively delete extras. """
 
-import os # for walk
-import os.path # for join
-import hashlib # for md5
-import logging # for basicConfig, getLogger
-import functools # for partial
+import functools  # for partial
+import hashlib  # for md5
+import logging  # for basicConfig, getLogger
+import os  # for walk
+import os.path  # for join
 
 logging.basicConfig()
 logger=logging.getLogger(__name__)
