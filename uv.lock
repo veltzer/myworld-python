@@ -588,35 +588,35 @@ version = "0.0.0"
 source = { virtual = "." }
 dependencies = [
     { name = "google-api-python-client" },
-    { name = "google-api-python-client-stubs" },
     { name = "httplib2" },
     { name = "oauth2client" },
-    { name = "types-httplib2" },
 ]
 
 [package.dev-dependencies]
 dev = [
+    { name = "google-api-python-client-stubs" },
     { name = "mypy" },
     { name = "pylint" },
     { name = "pytest" },
     { name = "ruff" },
+    { name = "types-httplib2" },
 ]
 
 [package.metadata]
 requires-dist = [
     { name = "google-api-python-client" },
-    { name = "google-api-python-client-stubs" },
     { name = "httplib2" },
     { name = "oauth2client" },
-    { name = "types-httplib2" },
 ]
 
 [package.metadata.requires-dev]
 dev = [
+    { name = "google-api-python-client-stubs" },
     { name = "mypy" },
     { name = "pylint" },
     { name = "pytest" },
     { name = "ruff" },
+    { name = "types-httplib2" },
 ]
 
 [[package]]
