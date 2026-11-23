@@ -30,7 +30,8 @@ def load_credentials():
 
 def main():
     """ main entry point """
-    argparse.ArgumentParser(parents=[oauth2client.tools.argparser]).parse_args()
+    parent = oauth2client.tools.argparser
+    argparse.ArgumentParser(parents=[parent] if parent is not None else []).parse_args()
 
     credentials = load_credentials()
     http = credentials.authorize(httplib2.Http())

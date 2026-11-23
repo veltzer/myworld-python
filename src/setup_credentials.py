@@ -55,7 +55,8 @@ def setup_credentials(flags):
 
 def main():
     """ main entry point """
-    flags = argparse.ArgumentParser(parents=[oauth2client.tools.argparser]).parse_args()
+    parent = oauth2client.tools.argparser
+    flags = argparse.ArgumentParser(parents=[parent] if parent is not None else []).parse_args()
     setup_credentials(flags)
 
 
