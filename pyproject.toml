@@ -37,3 +37,6 @@ ignore-missing-imports = [
     "googleapiclient.*",
     "oauth2client.*",
 ]
+
+[tool.pyrefly.errors]
+no-any-return = "error"
