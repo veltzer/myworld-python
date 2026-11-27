@@ -6,10 +6,15 @@ import argparse  # for ArgumentParser
 import os  # for mkdir
 import os.path  # for expanduser, join, isfile
 import sys  # for stderr, exit
+from argparse import Namespace
+from typing import TYPE_CHECKING, Any
 
 import oauth2client.client  # for flow_from_clientsecrets
 import oauth2client.file  # for Storage
 import oauth2client.tools  # for run_flow, argparser
+
+if TYPE_CHECKING:
+    from oauth2client.file import Storage
 
 # If modifying these scopes, delete your previously saved credentials
 # at ~/.credentials/drive-python-quickstart.json
@@ -18,13 +23,13 @@ SCOPES = 'https://www.googleapis.com/auth/drive.metadata.readonly'
 CLIENT_SECRET_FILE = os.path.expanduser('~/.myworld/client_id.json')
 APPLICATION_NAME = 'myworld'
 
-def create_new_creds(flags, store):
+def create_new_creds(flags: Any, store: Storage) -> None:
     """ Run the oauth flow and persist the result into store. """
     flow = oauth2client.client.flow_from_clientsecrets(CLIENT_SECRET_FILE, SCOPES)
     flow.user_agent = APPLICATION_NAME
     oauth2client.tools.run_flow(flow, store, flags)
 
-def setup_credentials(flags):
+def setup_credentials(flags: Namespace) -> None:
     """Gets valid user credentials from storage.
 
     If nothing has been stored, or if the stored credentials are invalid,
@@ -53,7 +58,7 @@ def setup_credentials(flags):
         print('Storing credentials to ' + credential_path)
 
 
-def main():
+def main() -> None:
     """ main entry point """
     parent = oauth2client.tools.argparser
     flags = argparse.ArgumentParser(parents=[parent] if parent is not None else []).parse_args()

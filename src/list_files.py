@@ -28,7 +28,7 @@ def load_credentials():
         sys.exit(1)
     return oauth2client.file.Storage(credential_path).get()
 
-def main():
+def main() -> None:
     """ main entry point """
     parent = oauth2client.tools.argparser
     argparse.ArgumentParser(parents=[parent] if parent is not None else []).parse_args()

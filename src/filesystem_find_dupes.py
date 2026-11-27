@@ -12,7 +12,7 @@ logging.basicConfig()
 logger=logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
-def md5sum(filename):
+def md5sum(filename: str) -> str:
     """ Return the md5 hex digest of a file. """
     with open(filename, mode='rb') as f:
         d = hashlib.md5()
@@ -20,7 +20,7 @@ def md5sum(filename):
             d.update(buf)
     return d.hexdigest()
 
-def main():
+def main() -> None:
     """ Walk the tree, group files by hash, ask what to delete. """
     exist_hash={}
     hashmap={}
